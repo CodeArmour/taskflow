@@ -87,7 +87,7 @@ export default function Navbar() {
               {languages.map((lang) => (
                 <DropdownMenuItem
                   key={lang.code}
-                  onClick={() => setLanguage(lang.code as "en" | "ar" | "hu")}
+                  onClick={() => setLanguage(lang.code as typeof language)}
                   className={language === lang.code ? "bg-accent" : ""}
                 >
                   {lang.label}
@@ -103,9 +103,11 @@ export default function Navbar() {
           </Button>
 
           <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
-            <Button variant="default" size={isMobile ? "sm" : "default"}>
-              {t("login")}
-            </Button>
+            <Link href="/login">
+              <Button variant="default" size={isMobile ? "sm" : "default"}>
+                {t("login")}
+              </Button>
+            </Link>
           </motion.div>
 
           {isMobile && (

@@ -64,6 +64,21 @@ export const translations = {
     "footer.rights": "All rights reserved",
     "footer.privacy": "Privacy Policy",
     "footer.terms": "Terms of Service",
+
+    // Login
+    "login.title": "Welcome Back",
+    "login.subtitle": "Enter your credentials to access your account",
+    "login.email": "Email",
+    "login.password": "Password",
+    "login.submit": "Sign In",
+    "login.loading": "Signing in...",
+    "login.forgot": "Forgot password?",
+    "login.no_account": "Don't have an account?",
+    "login.register": "Sign up",
+    "login.error.email": "Please enter a valid email address",
+    "login.error.password": "Password must be at least 6 characters",
+    "login.error.invalid": "Invalid email or password",
+    "login.error.general": "An error occurred. Please try again.",
   },
   ar: {
     // Navbar
@@ -128,6 +143,21 @@ export const translations = {
     "footer.rights": "جميع الحقوق محفوظة",
     "footer.privacy": "سياسة الخصوصية",
     "footer.terms": "شروط الخدمة",
+
+    // Login
+    "login.title": "مرحبًا بعودتك",
+    "login.subtitle": "أدخل بيانات الاعتماد الخاصة بك للوصول إلى حسابك",
+    "login.email": "البريد الإلكتروني",
+    "login.password": "كلمة المرور",
+    "login.submit": "تسجيل الدخول",
+    "login.loading": "جاري تسجيل الدخول...",
+    "login.forgot": "نسيت كلمة المرور؟",
+    "login.no_account": "ليس لديك حساب؟",
+    "login.register": "إنشاء حساب",
+    "login.error.email": "يرجى إدخال عنوان بريد إلكتروني صالح",
+    "login.error.password": "يجب أن تتكون كلمة المرور من 6 أحرف على الأقل",
+    "login.error.invalid": "بريد إلكتروني أو كلمة مرور غير صالحة",
+    "login.error.general": "حدث خطأ. يرجى المحاولة مرة أخرى.",
   },
   hu: {
     // Navbar
@@ -197,6 +227,21 @@ export const translations = {
     "footer.rights": "Minden jog fenntartva",
     "footer.privacy": "Adatvédelmi irányelvek",
     "footer.terms": "Szolgáltatási feltételek",
+
+    // Login
+    "login.title": "Üdvözöljük újra",
+    "login.subtitle": "Adja meg hitelesítő adatait a fiókjához való hozzáféréshez",
+    "login.email": "Email",
+    "login.password": "Jelszó",
+    "login.submit": "Bejelentkezés",
+    "login.loading": "Bejelentkezés...",
+    "login.forgot": "Elfelejtette jelszavát?",
+    "login.no_account": "Nincs még fiókja?",
+    "login.register": "Regisztráció",
+    "login.error.email": "Kérjük, adjon meg egy érvényes email címet",
+    "login.error.password": "A jelszónak legalább 6 karakterből kell állnia",
+    "login.error.invalid": "Érvénytelen email vagy jelszó",
+    "login.error.general": "Hiba történt. Kérjük, próbálja újra.",
   },
 }
 
