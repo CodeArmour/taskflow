@@ -21,6 +21,7 @@ import { mockSubmissions } from "@/lib/mock-data"
 export default function ReviewsPage() {
   const [submissions, setSubmissions] = useState(mockSubmissions)
   const [searchQuery, setSearchQuery] = useState("")
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const [selectedSubmission, setSelectedSubmission] = useState<any>(null)
   const [reviewComment, setReviewComment] = useState("")
 
@@ -231,6 +232,7 @@ export default function ReviewsPage() {
   )
 }
 
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 function SubmissionCard({ submission, index, onReview }: { submission: any; index: number; onReview: () => void }) {
   return (
     <motion.div

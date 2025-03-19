@@ -67,7 +67,7 @@ export default function LoginForm() {
         // Failed login
         setError(t("login.error.invalid"))
       }
-    } catch (err) {
+    } catch {
       setError(t("login.error.general"))
     } finally {
       setIsLoading(false)

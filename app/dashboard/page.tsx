@@ -46,7 +46,7 @@ export default function DashboardPage() {
         <div>
           <h1 className="text-3xl font-bold tracking-tight">Dashboard</h1>
           <p className="text-muted-foreground">
-            Welcome back, Admin! Here's an overview of your task management system.
+            Welcome back, Admin! Here&apos;s an overview of your task management system.
           </p>
         </div>
         <div className="mt-4 md:mt-0 flex space-x-2">
