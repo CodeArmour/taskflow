@@ -1,0 +1,257 @@
+export const mockTasks = [
+  {
+    id: "task-1",
+    title: "Build a REST API",
+    description:
+      "Create a RESTful API using Node.js and Express with MongoDB as the database. The API should include authentication, CRUD operations, and proper error handling.",
+    category: "programming",
+    status: "active",
+    createdAt: "2025-03-15T10:30:00Z",
+    dueDate: "2025-03-25",
+    requiresFile: true,
+    submissions: 8,
+    completionRate: 35,
+  },
+  {
+    id: "task-2",
+    title: "Design a Mobile App UI",
+    description:
+      "Create a modern UI design for a mobile app focused on task management. Include screens for dashboard, task list, task details, and user profile.",
+    category: "design",
+    status: "active",
+    createdAt: "2025-03-14T14:20:00Z",
+    dueDate: "2025-03-28",
+    requiresFile: true,
+    submissions: 12,
+    completionRate: 50,
+  },
+  {
+    id: "task-3",
+    title: "Research on AI Ethics",
+    description:
+      "Conduct research on ethical considerations in artificial intelligence. Write a comprehensive report covering privacy concerns, bias in algorithms, and regulatory frameworks.",
+    category: "research",
+    status: "submitted",
+    createdAt: "2025-03-10T09:15:00Z",
+    dueDate: "2025-03-20",
+    requiresFile: true,
+    submissions: 15,
+    completionRate: 75,
+  },
+  {
+    id: "task-4",
+    title: "Write Technical Documentation",
+    description:
+      "Create comprehensive technical documentation for a software project. Include installation instructions, API reference, and usage examples.",
+    category: "writing",
+    status: "completed",
+    createdAt: "2025-03-05T11:45:00Z",
+    dueDate: "2025-03-15",
+    requiresFile: false,
+    submissions: 20,
+    completionRate: 100,
+  },
+  {
+    id: "task-5",
+    title: "Database Schema Design",
+    description:
+      "Design a normalized database schema for an e-commerce application. Include tables for products, users, orders, and reviews with proper relationships.",
+    category: "programming",
+    status: "active",
+    createdAt: "2025-03-12T16:30:00Z",
+    dueDate: "2025-03-22",
+    requiresFile: true,
+    submissions: 5,
+    completionRate: 20,
+  },
+  {
+    id: "task-6",
+    title: "Create Marketing Content",
+    description:
+      "Develop marketing content for a new software product launch. Include social media posts, email templates, and a press release.",
+    category: "writing",
+    status: "submitted",
+    createdAt: "2025-03-08T13:20:00Z",
+    dueDate: "2025-03-18",
+    requiresFile: false,
+    submissions: 10,
+    completionRate: 60,
+  },
+]
+
+// Mock Submissions Data
+export const mockSubmissions = [
+  {
+    id: "submission-1",
+    taskId: "task-3",
+    taskTitle: "Research on AI Ethics",
+    userId: "user-2",
+    userName: "John Doe",
+    submittedAt: "2025-03-18T14:30:00Z",
+    status: "pending",
+    notes:
+      "I've completed the research on AI ethics with a focus on privacy concerns and algorithmic bias. The report includes case studies and recommendations for ethical AI development.",
+    fileUrl: "/submissions/ai-ethics-report.pdf",
+    reviewComment: "",
+  },
+  {
+    id: "submission-2",
+    taskId: "task-6",
+    taskTitle: "Create Marketing Content",
+    userId: "user-3",
+    userName: "Sarah Johnson",
+    submittedAt: "2025-03-17T10:15:00Z",
+    status: "pending",
+    notes:
+      "I've created a comprehensive marketing package including social media content, email templates, and a press release. The content is aligned with the brand guidelines and focuses on the key features of the product.",
+    fileUrl: "/submissions/marketing-content.zip",
+    reviewComment: "",
+  },
+  {
+    id: "submission-3",
+    taskId: "task-2",
+    taskTitle: "Design a Mobile App UI",
+    userId: "user-4",
+    userName: "Michael Chen",
+    submittedAt: "2025-03-16T09:45:00Z",
+    status: "approved",
+    notes:
+      "I've designed the UI for the mobile app with a focus on user experience and modern design principles. The design includes all the required screens and follows the provided brand guidelines.",
+    fileUrl: "/submissions/app-ui-design.fig",
+    reviewComment:
+      "Excellent work! The design is clean, modern, and follows all the requirements. The attention to detail in the user flow is impressive.",
+  },
+  {
+    id: "submission-4",
+    taskId: "task-1",
+    taskTitle: "Build a REST API",
+    userId: "user-5",
+    userName: "Emily Rodriguez",
+    submittedAt: "2025-03-15T16:20:00Z",
+    status: "rejected",
+    notes:
+      "I've built the REST API using Node.js, Express, and MongoDB. The API includes authentication with JWT, CRUD operations for all resources, and comprehensive error handling.",
+    fileUrl: "/submissions/rest-api-code.zip",
+    reviewComment:
+      "The API implementation is missing proper validation and the authentication system has security vulnerabilities. Please review the feedback and resubmit with the necessary improvements.",
+  },
+  {
+    id: "submission-5",
+    taskId: "task-4",
+    taskTitle: "Write Technical Documentation",
+    userId: "user-6",
+    userName: "David Kim",
+    submittedAt: "2025-03-14T11:30:00Z",
+    status: "approved",
+    notes:
+      "I've created comprehensive technical documentation for the software project. The documentation includes installation instructions, API reference with examples, and troubleshooting guides.",
+    fileUrl: "/submissions/technical-docs.pdf",
+    reviewComment:
+      "Great job on the documentation! It's well-structured, clear, and covers all the required aspects. The examples are particularly helpful.",
+  },
+]
+
+// Mock Users Data
+export const mockUsers = [
+  {
+    id: "user-1",
+    name: "Admin User",
+    email: "admin@taskflow.com",
+    role: "admin",
+    joinedAt: "2025-01-15T10:00:00Z",
+    tasksCompleted: 0,
+    tasksAssigned: 0,
+    profileCompletion: 100,
+    status: "active",
+  },
+  {
+    id: "user-2",
+    name: "John Doe",
+    email: "john.doe@example.com",
+    role: "student",
+    joinedAt: "2025-02-10T14:30:00Z",
+    tasksCompleted: 8,
+    tasksAssigned: 12,
+    profileCompletion: 85,
+    status: "active",
+  },
+  {
+    id: "user-3",
+    name: "Sarah Johnson",
+    email: "sarah.j@example.com",
+    role: "student",
+    joinedAt: "2025-02-15T09:45:00Z",
+    tasksCompleted: 5,
+    tasksAssigned: 10,
+    profileCompletion: 70,
+    status: "active",
+  },
+  {
+    id: "user-4",
+    name: "Michael Chen",
+    email: "michael.c@example.com",
+    role: "student",
+    joinedAt: "2025-02-20T11:15:00Z",
+    tasksCompleted: 12,
+    tasksAssigned: 15,
+    profileCompletion: 90,
+    status: "active",
+  },
+  {
+    id: "user-5",
+    name: "Emily Rodriguez",
+    email: "emily.r@example.com",
+    role: "student",
+    joinedAt: "2025-02-25T13:30:00Z",
+    tasksCompleted: 3,
+    tasksAssigned: 8,
+    profileCompletion: 60,
+    status: "active",
+  },
+  {
+    id: "user-6",
+    name: "David Kim",
+    email: "david.k@example.com",
+    role: "student",
+    joinedAt: "2025-03-01T10:20:00Z",
+    tasksCompleted: 7,
+    tasksAssigned: 9,
+    profileCompletion: 75,
+    status: "active",
+  },
+  {
+    id: "user-7",
+    name: "Lisa Wang",
+    email: "lisa.w@example.com",
+    role: "student",
+    joinedAt: "2025-03-05T15:45:00Z",
+    tasksCompleted: 0,
+    tasksAssigned: 5,
+    profileCompletion: 40,
+    status: "active",
+  },
+  {
+    id: "user-8",
+    name: "James Wilson",
+    email: "james.w@example.com",
+    role: "student",
+    joinedAt: "2025-03-10T09:30:00Z",
+    tasksCompleted: 0,
+    tasksAssigned: 3,
+    profileCompletion: 30,
+    status: "inactive",
+  },
+]
+
+// Mock login credentials for testing
+export const mockLoginCredentials = {
+  admin: {
+    email: "admin@taskflow.com",
+    password: "admin123",
+  },
+  student: {
+    email: "john.doe@example.com",
+    password: "student123",
+  },
+}
+

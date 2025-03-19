@@ -57,7 +57,7 @@ export default function LoginForm() {
         // Failed login
         setError(t("login.error.invalid"))
       }
-    } catch{
+    } catch (err) {
       setError(t("login.error.general"))
     } finally {
       setIsLoading(false)
@@ -71,24 +71,32 @@ export default function LoginForm() {
       transition={{ duration: 0.5 }}
       className="w-full max-w-md"
     >
-      <Card className="border-border/50">
-        <CardHeader className="space-y-1">
+      <Card className="enhanced-card border-border/50 shadow-strong overflow-hidden">
+        {/* Decorative top gradient */}
+        <div className="h-2 w-full bg-gradient-to-r from-primary/80 via-primary to-primary/80 animate-gradient-shift bg-[length:200%_auto]" />
+
+        <CardHeader className="space-y-1 pt-8">
+          <div className="mx-auto mb-4 w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center">
+            <div className="w-8 h-8 rounded-full bg-primary flex items-center justify-center text-white font-bold text-sm">
+              TF
+            </div>
+          </div>
           <CardTitle className="text-2xl font-bold text-center">{t("login.title")}</CardTitle>
           <CardDescription className="text-center">{t("login.subtitle")}</CardDescription>
         </CardHeader>
-        <CardContent>
+        <CardContent className="pt-6">
           <Form {...form}>
-            <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4">
+            <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
               <FormField
                 control={form.control}
                 name="email"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel>{t("login.email")}</FormLabel>
+                    <FormLabel className="text-base">{t("login.email")}</FormLabel>
                     <FormControl>
                       <div className="relative">
-                        <Mail className="absolute left-3 top-2.5 h-5 w-5 text-muted-foreground" />
-                        <Input placeholder="name@example.com" className="pl-10" {...field} />
+                        <Mail className="absolute left-3 top-3 h-5 w-5 text-muted-foreground" />
+                        <Input placeholder="name@example.com" className="pl-10 py-6 text-base" {...field} />
                       </div>
                     </FormControl>
                     <FormMessage />
@@ -101,11 +109,15 @@ export default function LoginForm() {
                 name="password"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel>{t("login.password")}</FormLabel>
+                    <FormLabel className="text-base">{t("login.password")}</FormLabel>
                     <FormControl>
                       <div className="relative">
-                        <Lock className="absolute left-3 top-2.5 h-5 w-5 text-muted-foreground" />
-                        <Input type={showPassword ? "text" : "password"} className="pl-10 pr-10" {...field} />
+                        <Lock className="absolute left-3 top-3 h-5 w-5 text-muted-foreground" />
+                        <Input
+                          type={showPassword ? "text" : "password"}
+                          className="pl-10 pr-10 py-6 text-base"
+                          {...field}
+                        />
                         <Button
                           type="button"
                           variant="ghost"
@@ -131,16 +143,16 @@ export default function LoginForm() {
                 <motion.div
                   initial={{ opacity: 0 }}
                   animate={{ opacity: 1 }}
-                  className="p-3 rounded-md bg-destructive/10 text-destructive text-sm"
+                  className="p-4 rounded-lg bg-destructive/10 text-destructive text-sm border border-destructive/20"
                 >
                   {error}
                 </motion.div>
               )}
 
-              <Button type="submit" className="w-full" disabled={isLoading}>
+              <Button type="submit" className="w-full btn-primary py-6 text-base font-medium" disabled={isLoading}>
                 {isLoading ? (
                   <div className="flex items-center gap-2">
-                    <div className="h-4 w-4 animate-spin rounded-full border-2 border-current border-t-transparent" />
+                    <div className="h-5 w-5 animate-spin rounded-full border-2 border-current border-t-transparent" />
                     <span>{t("login.loading")}</span>
                   </div>
                 ) : (
@@ -150,16 +162,16 @@ export default function LoginForm() {
             </form>
           </Form>
 
-          <div className="mt-4 text-center text-sm">
-            <Link href="#" className="text-primary hover:underline">
+          <div className="mt-6 text-center">
+            <Link href="#" className="text-primary hover:underline font-medium">
               {t("login.forgot")}
             </Link>
           </div>
         </CardContent>
-        <CardFooter className="flex flex-col">
-          <div className="text-center text-sm">
+        <CardFooter className="flex flex-col pb-8">
+          <div className="text-center">
             <span className="text-muted-foreground">{t("login.no_account")} </span>
-            <Link href="/register" className="text-primary hover:underline">
+            <Link href="/register" className="text-primary hover:underline font-medium">
               {t("login.register")}
             </Link>
           </div>
