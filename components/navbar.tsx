@@ -87,7 +87,7 @@ export default function Navbar() {
               {languages.map((lang) => (
                 <DropdownMenuItem
                   key={lang.code}
-                  onClick={() => setLanguage(lang.code as any)}
+                  onClick={() => setLanguage(lang.code as "en" | "ar" | "hu")}
                   className={language === lang.code ? "bg-accent" : ""}
                 >
                   {lang.label}

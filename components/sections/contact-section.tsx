@@ -30,7 +30,7 @@ export default function ContactSection() {
       // Reset form
       const form = e.target as HTMLFormElement
       form.reset()
-    } catch (error) {
+    } catch {
       setIsError(true)
     } finally {
       setIsSubmitting(false)
