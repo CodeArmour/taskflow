@@ -31,22 +31,22 @@ export default function DashboardLayout({
 
   const navItems = [
     {
-      title: "Dashboard",
+      title: t("nav.dashboard"),
       href: "/dashboard",
       icon: Home,
     },
     {
-      title: "Tasks",
+      title: t("nav.tasks"),
       href: "/dashboard/tasks",
       icon: ClipboardList,
     },
     {
-      title: "Reviews",
+      title: t("nav.reviews"),
       href: "/dashboard/reviews",
       icon: CheckSquare,
     },
     {
-      title: "Users",
+      title: t("nav.users"),
       href: "/dashboard/users",
       icon: Users,
     },
@@ -111,20 +111,20 @@ export default function DashboardLayout({
               </Button>
             </DropdownMenuTrigger>
             <DropdownMenuContent align="end" className="w-56">
-              <DropdownMenuLabel>My Account</DropdownMenuLabel>
+              <DropdownMenuLabel>{t("nav.my_account")}</DropdownMenuLabel>
               <DropdownMenuSeparator />
               <DropdownMenuItem>
                 <User className="h-4 w-4 mr-2" />
-                <span>Profile</span>
+                <span>{t("nav.profile")}</span>
               </DropdownMenuItem>
               <DropdownMenuItem>
                 <Bell className="h-4 w-4 mr-2" />
-                <span>Notifications</span>
+                <span>{t("nav.notifications")}</span>
               </DropdownMenuItem>
               <DropdownMenuSeparator />
               <DropdownMenuItem>
                 <LogOut className="h-4 w-4 mr-2" />
-                <span>Log out</span>
+                <span>{t("nav.logout")}</span>
               </DropdownMenuItem>
             </DropdownMenuContent>
           </DropdownMenu>
@@ -201,6 +201,7 @@ export default function DashboardLayout({
                   {languages.map((lang) => (
                     <DropdownMenuItem
                       key={lang.code}
+                      // eslint-disable-next-line @typescript-eslint/no-explicit-any
                       onClick={() => setLanguage(lang.code as any)}
                       className={`${language === lang.code ? "bg-accent font-medium" : ""} cursor-pointer`}
                     >
@@ -235,16 +236,16 @@ export default function DashboardLayout({
                     <DropdownMenuSeparator />
                     <DropdownMenuItem>
                       <User className="h-4 w-4 mr-2" />
-                      <span>Profile</span>
+                      <span>{t("nav.profile")}</span>
                     </DropdownMenuItem>
                     <DropdownMenuItem>
                       <Bell className="h-4 w-4 mr-2" />
-                      <span>Notifications</span>
+                      <span>{t("nav.notifications")}</span>
                     </DropdownMenuItem>
                     <DropdownMenuSeparator />
                     <DropdownMenuItem>
                       <LogOut className="h-4 w-4 mr-2" />
-                      <span>Log out</span>
+                      <span>{t("nav.logout")}</span>
                     </DropdownMenuItem>
                   </DropdownMenuContent>
                 </DropdownMenu>

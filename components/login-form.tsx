@@ -13,6 +13,7 @@ import { zodResolver } from "@hookform/resolvers/zod"
 import { useForm } from "react-hook-form"
 import * as z from "zod"
 import Link from "next/link"
+import { mockLoginCredentials } from "@/lib/mock-data"
 
 export default function LoginForm() {
   const { t } = useLanguage()
@@ -49,10 +50,19 @@ export default function LoginForm() {
       // Simulate API call
       await new Promise((resolve) => setTimeout(resolve, 1500))
 
-      // For demo purposes, let's just check if email contains "admin"
-      if (values.email.includes("admin")) {
-        // Successful login - redirect to dashboard
+      // Check against mock credentials
+      if (
+        values.email === mockLoginCredentials.admin.email &&
+        values.password === mockLoginCredentials.admin.password
+      ) {
+        // Admin login - redirect to admin dashboard
         router.push("/dashboard")
+      } else if (
+        values.email === mockLoginCredentials.student.email &&
+        values.password === mockLoginCredentials.student.password
+      ) {
+        // Student login - redirect to student dashboard (not implemented yet)
+        router.push("/student-dashboard")
       } else {
         // Failed login
         setError(t("login.error.invalid"))

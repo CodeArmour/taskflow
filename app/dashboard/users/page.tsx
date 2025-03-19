@@ -169,6 +169,7 @@ export default function UsersPage() {
   )
 }
 
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 function UserCard({ user, index }: { user: any; index: number }) {
   return (
     <motion.div

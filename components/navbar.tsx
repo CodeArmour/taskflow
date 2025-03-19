@@ -90,6 +90,7 @@ export default function Navbar() {
               {languages.map((lang) => (
                 <DropdownMenuItem
                   key={lang.code}
+                  // eslint-disable-next-line @typescript-eslint/no-explicit-any
                   onClick={() => setLanguage(lang.code as any)}
                   className={`${language === lang.code ? "bg-accent font-medium" : ""} cursor-pointer`}
                 >
