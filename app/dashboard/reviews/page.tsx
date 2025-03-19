@@ -289,7 +289,7 @@ function SubmissionCard({ submission, index, onReview }: { submission: any; inde
           )}
         </CardContent>
         <CardFooter className="pt-2">
-          <div className="w-full">
+          <div className="w-full z-10">
             {submission.status === "pending" ? (
               <Button onClick={onReview} className="w-full">
                 Review Submission

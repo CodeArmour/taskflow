@@ -32,6 +32,7 @@ export default function UsersPage() {
   const [users, setUsers] = useState(mockUsers)
   const [searchQuery, setSearchQuery] = useState("")
   const [roleFilter, setRoleFilter] = useState("all")
+  const [statusFilter, setStatusFilter] = useState("all")
 
   // Filter users based on search and role filter
   const filteredUsers = users.filter((user) => {
@@ -40,8 +41,8 @@ export default function UsersPage() {
       user.email.toLowerCase().includes(searchQuery.toLowerCase())
 
     const matchesRole = roleFilter === "all" || user.role === roleFilter
-
-    return matchesSearch && matchesRole
+    const matchesStatus = statusFilter === "all" || user.status === statusFilter;
+    return matchesSearch && matchesRole && matchesStatus;
   })
 
   // Create a new user
@@ -118,7 +119,7 @@ export default function UsersPage() {
       </div>
 
       <div className="flex flex-col md:flex-row justify-between items-start md:items-center mb-4 gap-4">
-        <Tabs defaultValue="all" className="w-full">
+        <Tabs defaultValue="all" className="w-full" onValueChange={setStatusFilter}>
           <TabsList className="mb-2 md:mb-0">
             <TabsTrigger value="all">All Users</TabsTrigger>
             <TabsTrigger value="active">Active</TabsTrigger>
@@ -189,6 +190,7 @@ function UserCard({ user, index }: { user: any; index: number }) {
             >
               {user.status === "active" ? "Active" : "Inactive"}
             </div>
+            <div className="z-10">
             <DropdownMenu>
               <DropdownMenuTrigger asChild>
                 <Button variant="ghost" size="icon" className="h-8 w-8">
@@ -214,6 +216,7 @@ function UserCard({ user, index }: { user: any; index: number }) {
                 </DropdownMenuItem>
               </DropdownMenuContent>
             </DropdownMenu>
+            </div>
           </div>
 
           <div className="flex items-center space-x-3">
@@ -279,7 +282,7 @@ function UserCard({ user, index }: { user: any; index: number }) {
           </div>
         </CardContent>
         <CardFooter className="pt-2">
-          <Button variant="outline" className="w-full">
+          <Button variant="outline" className="w-full z-10">
             View Profile
           </Button>
         </CardFooter>

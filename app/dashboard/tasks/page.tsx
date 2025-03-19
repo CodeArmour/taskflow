@@ -283,7 +283,7 @@ function TaskCard({ task, index }: { task: any; index: number }) {
                 </div>
               )}
             </div>
-            <Button variant="outline" size="sm">
+            <Button variant="outline" size="sm" className="z-10">
               View Details
             </Button>
           </div>
