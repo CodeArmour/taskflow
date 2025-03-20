@@ -7,10 +7,13 @@ import { translations } from "@/lib/translations"
 
 type Language = "en" | "ar" | "hu"
 
+// Define a type for translation keys
+type TranslationKey = keyof typeof translations.en
+
 type LanguageContextType = {
   language: Language
   setLanguage: (lang: Language) => void
-  t: (key: string) => string
+  t: (key: TranslationKey) => string
 }
 
 const LanguageContext = createContext<LanguageContextType | undefined>(undefined)
@@ -30,7 +33,7 @@ export function LanguageProvider({ children }: { children: React.ReactNode }) {
     document.documentElement.lang = language
   }, [language])
 
-  const t = (key: string) => {
+  const t = (key: TranslationKey) => {
     return translations[language]?.[key] || translations.en[key] || key
   }
 
@@ -44,4 +47,3 @@ export function useLanguage() {
   }
   return context
 }
-
