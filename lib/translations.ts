@@ -514,8 +514,6 @@ export const translations = {
     "create_task.requires_file": "Fájl beadása szükséges",
     "create_task.submit": "Feladat létrehozása",
 
-    // Reviews Page
-    "reviews.title": "Feladat értékelések",
 
     // Reviews Page
     "reviews.title": "Feladat értékelések",
