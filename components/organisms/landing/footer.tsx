@@ -1,12 +1,12 @@
-"use client"
+"use client";
 
-import Link from "next/link"
-import { useLanguage } from "@/components/language-provider"
-import { motion } from "framer-motion"
+import Link from "next/link";
+import { useLanguage } from "@/components/providers/language-provider";
+import { motion } from "framer-motion";
 
 export default function Footer() {
-  const { t } = useLanguage()
-  const currentYear = new Date().getFullYear()
+  const { t } = useLanguage();
+  const currentYear = new Date().getFullYear();
 
   return (
     <footer className="bg-muted py-12 border-t border-border">
@@ -20,7 +20,8 @@ export default function Footer() {
               <span className="font-bold text-xl">TaskFlow</span>
             </Link>
             <p className="text-muted-foreground max-w-xs">
-              Streamlining task management between administrators and users with our comprehensive platform.
+              Streamlining task management between administrators and users with
+              our comprehensive platform.
             </p>
           </div>
 
@@ -28,27 +29,42 @@ export default function Footer() {
             <h3 className="font-medium text-lg">Links</h3>
             <ul className="space-y-2">
               <li>
-                <Link href="#" className="text-muted-foreground hover:text-foreground transition-colors">
+                <Link
+                  href="#"
+                  className="text-muted-foreground hover:text-foreground transition-colors"
+                >
                   {t("home")}
                 </Link>
               </li>
               <li>
-                <Link href="#services" className="text-muted-foreground hover:text-foreground transition-colors">
+                <Link
+                  href="#services"
+                  className="text-muted-foreground hover:text-foreground transition-colors"
+                >
                   {t("services")}
                 </Link>
               </li>
               <li>
-                <Link href="#about" className="text-muted-foreground hover:text-foreground transition-colors">
+                <Link
+                  href="#about"
+                  className="text-muted-foreground hover:text-foreground transition-colors"
+                >
                   {t("about")}
                 </Link>
               </li>
               <li>
-                <Link href="#testimonials" className="text-muted-foreground hover:text-foreground transition-colors">
+                <Link
+                  href="#testimonials"
+                  className="text-muted-foreground hover:text-foreground transition-colors"
+                >
                   {t("testimonials")}
                 </Link>
               </li>
               <li>
-                <Link href="#contact" className="text-muted-foreground hover:text-foreground transition-colors">
+                <Link
+                  href="#contact"
+                  className="text-muted-foreground hover:text-foreground transition-colors"
+                >
                   {t("contact")}
                 </Link>
               </li>
@@ -59,12 +75,18 @@ export default function Footer() {
             <h3 className="font-medium text-lg">Legal</h3>
             <ul className="space-y-2">
               <li>
-                <Link href="#" className="text-muted-foreground hover:text-foreground transition-colors">
+                <Link
+                  href="#"
+                  className="text-muted-foreground hover:text-foreground transition-colors"
+                >
                   {t("footer.privacy")}
                 </Link>
               </li>
               <li>
-                <Link href="#" className="text-muted-foreground hover:text-foreground transition-colors">
+                <Link
+                  href="#"
+                  className="text-muted-foreground hover:text-foreground transition-colors"
+                >
                   {t("footer.terms")}
                 </Link>
               </li>
@@ -84,6 +106,5 @@ export default function Footer() {
         </motion.div>
       </div>
     </footer>
-  )
+  );
 }
-

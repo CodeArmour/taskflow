@@ -1,41 +1,47 @@
-"use client"
+"use client";
 
-import type React from "react"
+import type React from "react";
 
-import { useState } from "react"
-import { useLanguage } from "@/components/language-provider"
-import { Button } from "@/components/ui/button"
-import { Input } from "@/components/ui/input"
-import { Textarea } from "@/components/ui/textarea"
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
-import { motion } from "framer-motion"
-import { Mail, Phone, MapPin, Send } from "lucide-react"
+import { useState } from "react";
+import { useLanguage } from "@/components/providers/language-provider";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { Textarea } from "@/components/ui/textarea";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
+import { motion } from "framer-motion";
+import { Mail, Phone, MapPin, Send } from "lucide-react";
 
 export default function ContactSection() {
-  const { t } = useLanguage()
-  const [isSubmitting, setIsSubmitting] = useState(false)
-  const [isSuccess, setIsSuccess] = useState(false)
-  const [isError, setIsError] = useState(false)
+  const { t } = useLanguage();
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [isSuccess, setIsSuccess] = useState(false);
+  const [isError, setIsError] = useState(false);
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault()
-    setIsSubmitting(true)
-    setIsSuccess(false)
-    setIsError(false)
+    e.preventDefault();
+    setIsSubmitting(true);
+    setIsSuccess(false);
+    setIsError(false);
 
     // Simulate form submission
     try {
-      await new Promise((resolve) => setTimeout(resolve, 1500))
-      setIsSuccess(true)
+      await new Promise((resolve) => setTimeout(resolve, 1500));
+      setIsSuccess(true);
       // Reset form
-      const form = e.target as HTMLFormElement
-      form.reset()
+      const form = e.target as HTMLFormElement;
+      form.reset();
     } catch {
-      setIsError(true)
+      setIsError(true);
     } finally {
-      setIsSubmitting(false)
+      setIsSubmitting(false);
     }
-  }
+  };
 
   return (
     <section id="contact" className="py-16 md:py-24 bg-muted/50">
@@ -47,8 +53,12 @@ export default function ContactSection() {
           viewport={{ once: true }}
           transition={{ duration: 0.5 }}
         >
-          <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl">{t("contact.title")}</h2>
-          <p className="mx-auto max-w-[700px] text-muted-foreground md:text-xl">{t("contact.subtitle")}</p>
+          <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl">
+            {t("contact.title")}
+          </h2>
+          <p className="mx-auto max-w-[700px] text-muted-foreground md:text-xl">
+            {t("contact.subtitle")}
+          </p>
         </motion.div>
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center">
@@ -67,17 +77,34 @@ export default function ContactSection() {
                 <form onSubmit={handleSubmit} className="space-y-6">
                   <div className="space-y-4">
                     <div>
-                      <Input placeholder={t("contact.name")} required className="bg-background" />
+                      <Input
+                        placeholder={t("contact.name")}
+                        required
+                        className="bg-background"
+                      />
                     </div>
                     <div>
-                      <Input type="email" placeholder={t("contact.email")} required className="bg-background" />
+                      <Input
+                        type="email"
+                        placeholder={t("contact.email")}
+                        required
+                        className="bg-background"
+                      />
                     </div>
                     <div>
-                      <Textarea placeholder={t("contact.message")} required className="min-h-32 bg-background" />
+                      <Textarea
+                        placeholder={t("contact.message")}
+                        required
+                        className="min-h-32 bg-background"
+                      />
                     </div>
                   </div>
 
-                  <Button type="submit" className="w-full" disabled={isSubmitting}>
+                  <Button
+                    type="submit"
+                    className="w-full"
+                    disabled={isSubmitting}
+                  >
                     {isSubmitting ? (
                       <div className="flex items-center gap-2">
                         <div className="h-4 w-4 animate-spin rounded-full border-2 border-current border-t-transparent" />
@@ -123,7 +150,11 @@ export default function ContactSection() {
             transition={{ duration: 0.5, delay: 0.2 }}
           >
             <div className="aspect-video rounded-xl overflow-hidden">
-              <img src="/placeholder.svg?height=400&width=600" alt="Map" className="w-full h-full object-cover" />
+              <img
+                src="/images/map.png"
+                alt="Map"
+                className="w-full h-full object-cover"
+              />
             </div>
 
             <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
@@ -152,6 +183,5 @@ export default function ContactSection() {
         </div>
       </div>
     </section>
-  )
+  );
 }
-

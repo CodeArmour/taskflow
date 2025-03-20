@@ -1,13 +1,13 @@
-"use client"
+"use client";
 
-import { useLanguage } from "@/components/language-provider"
-import { Card, CardContent, CardFooter } from "@/components/ui/card"
-import { Avatar, AvatarFallback } from "@/components/ui/avatar"
-import { motion } from "framer-motion"
-import { Quote } from "lucide-react"
+import { useLanguage } from "@/components/providers/language-provider";
+import { Card, CardContent, CardFooter } from "@/components/ui/card";
+import { Avatar, AvatarFallback } from "@/components/ui/avatar";
+import { motion } from "framer-motion";
+import { Quote } from "lucide-react";
 
 export default function TestimonialsSection() {
-  const { t } = useLanguage()
+  const { t } = useLanguage();
 
   const testimonials = [
     {
@@ -28,7 +28,7 @@ export default function TestimonialsSection() {
       text: t("testimonials.3.text"),
       avatar: "MC",
     },
-  ]
+  ];
 
   const container = {
     hidden: { opacity: 0 },
@@ -38,12 +38,12 @@ export default function TestimonialsSection() {
         staggerChildren: 0.1,
       },
     },
-  }
+  };
 
   const item = {
     hidden: { opacity: 0, y: 20 },
     show: { opacity: 1, y: 0, transition: { duration: 0.5 } },
-  }
+  };
 
   return (
     <section id="testimonials" className="py-16 md:py-24">
@@ -55,8 +55,12 @@ export default function TestimonialsSection() {
           viewport={{ once: true }}
           transition={{ duration: 0.5 }}
         >
-          <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl">{t("testimonials.title")}</h2>
-          <p className="mx-auto max-w-[700px] text-muted-foreground md:text-xl">{t("testimonials.subtitle")}</p>
+          <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl">
+            {t("testimonials.title")}
+          </h2>
+          <p className="mx-auto max-w-[700px] text-muted-foreground md:text-xl">
+            {t("testimonials.subtitle")}
+          </p>
         </motion.div>
 
         <motion.div
@@ -73,7 +77,9 @@ export default function TestimonialsSection() {
                   <div className="mb-4 text-primary">
                     <Quote className="h-8 w-8 opacity-80" />
                   </div>
-                  <p className="text-foreground/90 italic">{testimonial.text}</p>
+                  <p className="text-foreground/90 italic">
+                    {testimonial.text}
+                  </p>
                 </CardContent>
                 <CardFooter>
                   <div className="flex items-center gap-3">
@@ -82,7 +88,9 @@ export default function TestimonialsSection() {
                     </Avatar>
                     <div>
                       <p className="font-medium">{testimonial.name}</p>
-                      <p className="text-sm text-muted-foreground">{testimonial.role}</p>
+                      <p className="text-sm text-muted-foreground">
+                        {testimonial.role}
+                      </p>
                     </div>
                   </div>
                 </CardFooter>
@@ -92,6 +100,5 @@ export default function TestimonialsSection() {
         </motion.div>
       </div>
     </section>
-  )
+  );
 }
-

@@ -1,6 +1,6 @@
-import LoginForm from "@/components/login-form"
-import LanguageSwitcher from "@/components/language-switcher"
-import ThemeToggle from "@/components/theme-toggle"
+import { LoginForm } from "@/components/features/auth/login-form"
+import { LanguageSwitcher } from "@/components/molecules/language-switcher"
+import { ThemeToggle } from "@/components/molecules/theme-toggle"
 import Link from "next/link"
 
 export default function LoginPage() {
@@ -25,3 +25,4 @@ export default function LoginPage() {
     </div>
   )
 }
+

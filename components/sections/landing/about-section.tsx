@@ -1,10 +1,10 @@
-"use client"
+"use client";
 
-import { useLanguage } from "@/components/language-provider"
-import { motion } from "framer-motion"
+import { useLanguage } from "@/components/providers/language-provider";
+import { motion } from "framer-motion";
 
 export default function AboutSection() {
-  const { t } = useLanguage()
+  const { t } = useLanguage();
 
   return (
     <section id="about" className="py-16 md:py-24 bg-muted/50">
@@ -18,8 +18,12 @@ export default function AboutSection() {
             transition={{ duration: 0.5 }}
           >
             <div className="space-y-2">
-              <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl">{t("about.title")}</h2>
-              <p className="text-muted-foreground md:text-xl">{t("about.subtitle")}</p>
+              <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl">
+                {t("about.title")}
+              </h2>
+              <p className="text-muted-foreground md:text-xl">
+                {t("about.subtitle")}
+              </p>
             </div>
 
             <div className="space-y-4">
@@ -60,6 +64,5 @@ export default function AboutSection() {
         </div>
       </div>
     </section>
-  )
+  );
 }
-

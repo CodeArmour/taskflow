@@ -1,8 +1,8 @@
 import type React from "react"
 import { Inter, Poppins, Tajawal } from "next/font/google"
 import "./globals.css"
-import { ThemeProvider } from "next-themes"
-import { LanguageProvider } from "@/components/language-provider"
+import { ThemeProvider } from "@/components/providers/theme-provider"
+import { LanguageProvider } from "@/components/providers/language-provider"
 
 // Load fonts using next/font/google
 const poppins = Poppins({

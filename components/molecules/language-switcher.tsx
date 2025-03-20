@@ -1,11 +1,11 @@
 "use client"
 
-import { useLanguage } from "@/components/language-provider"
+import { useLanguage } from "@/components/providers/language-provider"
 import { Button } from "@/components/ui/button"
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from "@/components/ui/dropdown-menu"
 import { Globe } from "lucide-react"
 
-export default function LanguageSwitcher() {
+export function LanguageSwitcher() {
   const { language, setLanguage } = useLanguage()
 
   const languages = [
@@ -26,7 +26,6 @@ export default function LanguageSwitcher() {
         {languages.map((lang) => (
           <DropdownMenuItem
             key={lang.code}
-            // eslint-disable-next-line @typescript-eslint/no-explicit-any
             onClick={() => setLanguage(lang.code as any)}
             className={language === lang.code ? "bg-accent" : ""}
           >

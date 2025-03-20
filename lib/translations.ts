@@ -515,7 +515,7 @@ export const translations = {
     "create_task.submit": "Feladat létrehozása",
 
     // Reviews Page
-    // Removed duplicate "reviews.title" property
+    "reviews.title": "Feladat értékelések",
 
     // Reviews Page
     "reviews.title": "Feladat értékelések",

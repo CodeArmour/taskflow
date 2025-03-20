@@ -1,30 +1,35 @@
-"use client"
+"use client";
 
-import { useState, useEffect } from "react"
-import Link from "next/link"
-import { useTheme } from "next-themes"
-import { useLanguage } from "@/components/language-provider"
-import { Button } from "@/components/ui/button"
-import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from "@/components/ui/dropdown-menu"
-import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet"
-import { Moon, Sun, Globe, Menu } from "lucide-react"
-import { motion } from "framer-motion"
-import { useMobile } from "@/hooks/use-mobile"
+import { useState, useEffect } from "react";
+import Link from "next/link";
+import { useTheme } from "next-themes";
+import { useLanguage } from "@/components/providers/language-provider";
+import { Button } from "@/components/ui/button";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu";
+import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
+import { Moon, Sun, Globe, Menu } from "lucide-react";
+import { motion } from "framer-motion";
+import { useMobile } from "@/hooks/use-mobile";
 
 export default function Navbar() {
-  const { theme, setTheme } = useTheme()
-  const { language, setLanguage, t } = useLanguage()
-  const isMobile = useMobile()
-  const [isScrolled, setIsScrolled] = useState(false)
+  const { theme, setTheme } = useTheme();
+  const { language, setLanguage, t } = useLanguage();
+  const isMobile = useMobile();
+  const [isScrolled, setIsScrolled] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => {
-      setIsScrolled(window.scrollY > 10)
-    }
+      setIsScrolled(window.scrollY > 10);
+    };
 
-    window.addEventListener("scroll", handleScroll)
-    return () => window.removeEventListener("scroll", handleScroll)
-  }, [])
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
 
   const navLinks = [
     { href: "#", label: t("home") },
@@ -32,18 +37,20 @@ export default function Navbar() {
     { href: "#about", label: t("about") },
     { href: "#testimonials", label: t("testimonials") },
     { href: "#contact", label: t("contact") },
-  ]
+  ];
 
   const languages = [
     { code: "en", label: "English" },
     { code: "ar", label: "العربية" },
     { code: "hu", label: "Magyar" },
-  ]
+  ];
 
   return (
     <motion.header
       className={`fixed top-0 w-full z-50 transition-all duration-300 ${
-        isScrolled ? "bg-background/90 backdrop-blur-md shadow-md border-b border-border/20" : "bg-transparent"
+        isScrolled
+          ? "bg-background/90 backdrop-blur-md shadow-md border-b border-border/20"
+          : "bg-transparent"
       }`}
       initial={{ y: -100 }}
       animate={{ y: 0 }}
@@ -65,7 +72,11 @@ export default function Navbar() {
           {!isMobile && (
             <nav className="hidden md:flex gap-8">
               {navLinks.map((link) => (
-                <motion.div key={link.href} whileHover={{ scale: 1.05, y: -2 }} whileTap={{ scale: 0.95 }}>
+                <motion.div
+                  key={link.href}
+                  whileHover={{ scale: 1.05, y: -2 }}
+                  whileTap={{ scale: 0.95 }}
+                >
                   <Link
                     href={link.href}
                     className="text-muted-foreground hover:text-foreground transition-colors text-base font-medium"
@@ -81,7 +92,11 @@ export default function Navbar() {
         <div className="flex items-center gap-3">
           <DropdownMenu>
             <DropdownMenuTrigger asChild>
-              <Button variant="ghost" size="icon" className="rounded-full h-10 w-10">
+              <Button
+                variant="ghost"
+                size="icon"
+                className="rounded-full h-10 w-10"
+              >
                 <Globe className="h-5 w-5" />
                 <span className="sr-only">Toggle language</span>
               </Button>
@@ -92,7 +107,9 @@ export default function Navbar() {
                   key={lang.code}
                   // eslint-disable-next-line @typescript-eslint/no-explicit-any
                   onClick={() => setLanguage(lang.code as any)}
-                  className={`${language === lang.code ? "bg-accent font-medium" : ""} cursor-pointer`}
+                  className={`${
+                    language === lang.code ? "bg-accent font-medium" : ""
+                  } cursor-pointer`}
                 >
                   {lang.label}
                 </DropdownMenuItem>
@@ -126,7 +143,11 @@ export default function Navbar() {
           {isMobile && (
             <Sheet>
               <SheetTrigger asChild>
-                <Button variant="ghost" size="icon" className="rounded-full h-10 w-10">
+                <Button
+                  variant="ghost"
+                  size="icon"
+                  className="rounded-full h-10 w-10"
+                >
                   <Menu className="h-5 w-5" />
                   <span className="sr-only">Open menu</span>
                 </Button>
@@ -155,6 +176,5 @@ export default function Navbar() {
         </div>
       </div>
     </motion.header>
-  )
+  );
 }
-
