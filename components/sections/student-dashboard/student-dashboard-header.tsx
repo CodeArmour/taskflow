@@ -4,7 +4,7 @@ import { Button } from "@/components/ui/button"
 import { Calendar } from "lucide-react"
 import { useLanguage } from "@/components/providers/language-provider"
 
-export function DashboardHeader() {
+export function StudentDashboardHeader() {
   const { t } = useLanguage()
 
   return (
@@ -12,7 +12,7 @@ export function DashboardHeader() {
       <div>
         <h1 className="text-3xl font-bold tracking-tight">{t("nav.dashboard")}</h1>
         <p className="text-muted-foreground">
-          {t("dashboard.welcome")}, Admin! {t("dashboard.overview")}
+          {t("dashboard.welcome")}, John! {t("dashboard.overview")}
         </p>
       </div>
       <div className="mt-4 md:mt-0 flex space-x-2">

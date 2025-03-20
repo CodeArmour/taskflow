@@ -2,6 +2,7 @@
 
 import type React from "react"
 import { DashboardSidebar } from "@/components/organisms/dashboard/dashboard-sidebar"
+import { DashboardHeader } from "@/components/organisms/dashboard/dashboard-header"
 
 export function DashboardLayout({
   children,
@@ -12,6 +13,7 @@ export function DashboardLayout({
     <div className="min-h-screen bg-muted/30 flex">
       <DashboardSidebar />
       <div className="flex-1 md:ml-64 flex flex-col min-h-screen">
+        <DashboardHeader />
         <main className="flex-1 p-4 md:p-6">{children}</main>
       </div>
     </div>

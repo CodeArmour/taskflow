@@ -136,7 +136,7 @@ export function StudentProfileForm() {
         <CardContent>
           <ProgressBar value={completion.overall} label="Overall Completion" />
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 mt-6">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mt-6">
             <Card className="border-border/50">
               <CardContent className="p-4">
                 <div className="flex justify-between items-center mb-2">
@@ -207,15 +207,23 @@ export function StudentProfileForm() {
         </CardHeader>
         <CardContent>
           <Tabs value={activeTab} onValueChange={setActiveTab}>
-            <TabsList className="mb-6">
-              <TabsTrigger value="basic">Basic Information</TabsTrigger>
-              <TabsTrigger value="contact">Contact Details</TabsTrigger>
-              <TabsTrigger value="education">Education</TabsTrigger>
-              <TabsTrigger value="skills">Skills & Expertise</TabsTrigger>
+            <TabsList className="flex flex-wrap h-auto p-1 mb-6">
+              <TabsTrigger value="basic" className="text-xs sm:text-sm">
+                Basic Information
+              </TabsTrigger>
+              <TabsTrigger value="contact" className="text-xs sm:text-sm">
+                Contact Details
+              </TabsTrigger>
+              <TabsTrigger value="education" className="text-xs sm:text-sm">
+                Education
+              </TabsTrigger>
+              <TabsTrigger value="skills" className="text-xs sm:text-sm">
+                Skills & Expertise
+              </TabsTrigger>
             </TabsList>
 
             <TabsContent value="basic" className="space-y-4">
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 <div className="space-y-2">
                   <Label htmlFor="firstName">First Name</Label>
                   <Input id="firstName" name="firstName" value={profile.firstName} onChange={handleInputChange} />
@@ -227,7 +235,7 @@ export function StudentProfileForm() {
                 </div>
               </div>
 
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 <div className="space-y-2">
                   <Label htmlFor="email">Email</Label>
                   <Input id="email" name="email" type="email" value={profile.email} onChange={handleInputChange} />
@@ -239,7 +247,7 @@ export function StudentProfileForm() {
                 </div>
               </div>
 
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 <div className="space-y-2">
                   <Label htmlFor="dateOfBirth">Date of Birth</Label>
                   <Input
@@ -274,7 +282,7 @@ export function StudentProfileForm() {
                 <Input id="address" name="address" value={profile.address} onChange={handleInputChange} />
               </div>
 
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 <div className="space-y-2">
                   <Label htmlFor="city">City</Label>
                   <Input id="city" name="city" value={profile.city} onChange={handleInputChange} />
@@ -286,7 +294,7 @@ export function StudentProfileForm() {
                 </div>
               </div>
 
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 <div className="space-y-2">
                   <Label htmlFor="zipCode">Zip/Postal Code</Label>
                   <Input id="zipCode" name="zipCode" value={profile.zipCode} onChange={handleInputChange} />
@@ -340,7 +348,7 @@ export function StudentProfileForm() {
                 <Input id="university" name="university" value={profile.university} onChange={handleInputChange} />
               </div>
 
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 <div className="space-y-2">
                   <Label htmlFor="fieldOfStudy">Field of Study</Label>
                   <Input
@@ -413,8 +421,8 @@ export function StudentProfileForm() {
             </TabsContent>
           </Tabs>
         </CardContent>
-        <CardFooter>
-          <Button onClick={handleSave} disabled={isSaving}>
+        <CardFooter className="flex flex-col sm:flex-row sm:justify-end gap-2">
+          <Button onClick={handleSave} disabled={isSaving} className="w-full sm:w-auto">
             {isSaving ? (
               <>
                 <div className="h-4 w-4 mr-2 animate-spin rounded-full border-2 border-current border-t-transparent" />

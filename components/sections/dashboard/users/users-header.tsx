@@ -4,8 +4,6 @@ import { Button } from "@/components/ui/button"
 import { Plus } from "lucide-react"
 import { useLanguage } from "@/components/providers/language-provider"
 import { CreateUserDialog } from "@/components/features/users/create-user-dialog"
-import { ThemeToggle } from "@/components/molecules/theme-toggle"
-import { LanguageSwitcher } from "@/components/molecules/language-switcher"
 
 export function UsersHeader() {
   const { t, language } = useLanguage()
@@ -18,8 +16,6 @@ export function UsersHeader() {
         <p className="text-muted-foreground">{t("users.subtitle")}</p>
       </div>
       <div className="mt-4 md:mt-0">
-      <ThemeToggle />
-      <LanguageSwitcher />
         <CreateUserDialog>
           <Button className="btn-primary">
             <Plus className={`${isRtl ? "ml-2" : "mr-2"} h-4 w-4`} />

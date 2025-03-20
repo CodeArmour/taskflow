@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 /* eslint-disable @typescript-eslint/no-explicit-any */
 "use client"
 
@@ -11,7 +12,6 @@ import { StatusBadge } from "@/components/atoms/status-badge"
 import { TaskDetailDialog } from "@/components/features/student-tasks/task-detail-dialog"
 
 export function StudentTaskCard({ task, index }: { task: any; index: number }) {
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const { t, language } = useLanguage()
   const isRtl = language === "ar"
   const [isDialogOpen, setIsDialogOpen] = useState(false)
@@ -40,6 +40,7 @@ export function StudentTaskCard({ task, index }: { task: any; index: number }) {
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.3, delay: index * 0.05 }}
+        className="h-full"
       >
         <Card className="h-full enhanced-card">
           <CardHeader className="pb-2">
@@ -87,7 +88,7 @@ export function StudentTaskCard({ task, index }: { task: any; index: number }) {
             )}
           </CardContent>
           <CardFooter className="pt-2">
-            <Button variant="default" className="w-full z-10" onClick={() => setIsDialogOpen(true)}>
+            <Button variant="default" className="w-full" onClick={() => setIsDialogOpen(true)}>
               {task.status === "new" ? "View Details" : "Manage Task"}
             </Button>
           </CardFooter>

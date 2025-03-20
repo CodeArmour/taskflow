@@ -121,57 +121,71 @@ export function StudentTasksList() {
 
   return (
     <Tabs defaultValue="all" className="w-full">
-      <div className="flex flex-col md:flex-row justify-between items-start md:items-center mb-4 gap-4">
-        <TabsList className="mb-2 md:mb-0">
-          <TabsTrigger value="all">All Tasks</TabsTrigger>
-          <TabsTrigger value="new">New</TabsTrigger>
-          <TabsTrigger value="in-progress">In Progress</TabsTrigger>
-          <TabsTrigger value="submitted">Submitted</TabsTrigger>
-          <TabsTrigger value="completed">Completed</TabsTrigger>
-          <TabsTrigger value="rejected">Rejected</TabsTrigger>
+      <div className="flex flex-col space-y-4 md:space-y-0 md:flex-row md:justify-between md:items-center mb-4 md:gap-4">
+        <TabsList className="flex flex-wrap h-auto p-1">
+          <TabsTrigger value="all" className="text-xs sm:text-sm">
+            All Tasks
+          </TabsTrigger>
+          <TabsTrigger value="new" className="text-xs sm:text-sm">
+            New
+          </TabsTrigger>
+          <TabsTrigger value="in-progress" className="text-xs sm:text-sm">
+            In Progress
+          </TabsTrigger>
+          <TabsTrigger value="submitted" className="text-xs sm:text-sm">
+            Submitted
+          </TabsTrigger>
+          <TabsTrigger value="completed" className="text-xs sm:text-sm">
+            Completed
+          </TabsTrigger>
+          <TabsTrigger value="rejected" className="text-xs sm:text-sm">
+            Rejected
+          </TabsTrigger>
         </TabsList>
 
-        <div className="flex flex-col md:flex-row gap-2 w-full md:w-auto">
-          <div className="relative w-full md:w-auto">
+        <div className="flex flex-col sm:flex-row gap-2 w-full md:w-auto">
+          <div className="relative w-full sm:w-auto">
             <Search className={`absolute ${isRtl ? "right-2.5" : "left-2.5"} top-2.5 h-4 w-4 text-muted-foreground`} />
             <Input
               placeholder="Search tasks..."
-              className={`${isRtl ? "pr-8" : "pl-8"} w-full md:w-[200px] lg:w-[250px]`}
+              className={`${isRtl ? "pr-8" : "pl-8"} w-full sm:w-[200px] lg:w-[250px]`}
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
             />
           </div>
 
-          <Select value={categoryFilter} onValueChange={setCategoryFilter}>
-            <SelectTrigger className="w-full md:w-[150px]">
-              <SelectValue placeholder="Category" />
-            </SelectTrigger>
-            <SelectContent>
-              <SelectItem value="all">All Categories</SelectItem>
-              <SelectItem value="programming">Programming</SelectItem>
-              <SelectItem value="design">Design</SelectItem>
-              <SelectItem value="research">Research</SelectItem>
-              <SelectItem value="writing">Writing</SelectItem>
-            </SelectContent>
-          </Select>
+          <div className="flex flex-col sm:flex-row gap-2 w-full sm:w-auto">
+            <Select value={categoryFilter} onValueChange={setCategoryFilter}>
+              <SelectTrigger className="w-full sm:w-[150px]">
+                <SelectValue placeholder="Category" />
+              </SelectTrigger>
+              <SelectContent>
+                <SelectItem value="all">All Categories</SelectItem>
+                <SelectItem value="programming">Programming</SelectItem>
+                <SelectItem value="design">Design</SelectItem>
+                <SelectItem value="research">Research</SelectItem>
+                <SelectItem value="writing">Writing</SelectItem>
+              </SelectContent>
+            </Select>
 
-          <Select value={sortOrder} onValueChange={setSortOrder}>
-            <SelectTrigger className="w-full md:w-[180px]">
-              <SelectValue placeholder="Sort By" />
-            </SelectTrigger>
-            <SelectContent>
-              <SelectItem value="due-date-asc">Due Date (Earliest)</SelectItem>
-              <SelectItem value="due-date-desc">Due Date (Latest)</SelectItem>
-              <SelectItem value="title-asc">Title (A-Z)</SelectItem>
-              <SelectItem value="title-desc">Title (Z-A)</SelectItem>
-              <SelectItem value="status">Status</SelectItem>
-            </SelectContent>
-          </Select>
+            <Select value={sortOrder} onValueChange={setSortOrder}>
+              <SelectTrigger className="w-full sm:w-[180px]">
+                <SelectValue placeholder="Sort By" />
+              </SelectTrigger>
+              <SelectContent>
+                <SelectItem value="due-date-asc">Due Date (Earliest)</SelectItem>
+                <SelectItem value="due-date-desc">Due Date (Latest)</SelectItem>
+                <SelectItem value="title-asc">Title (A-Z)</SelectItem>
+                <SelectItem value="title-desc">Title (Z-A)</SelectItem>
+                <SelectItem value="status">Status</SelectItem>
+              </SelectContent>
+            </Select>
+          </div>
         </div>
       </div>
 
       <TabsContent value="all" className="mt-0">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
           {sortedTasks.map((task, index) => (
             <StudentTaskCard key={task.id} task={task} index={index} />
           ))}
@@ -179,7 +193,7 @@ export function StudentTasksList() {
       </TabsContent>
 
       <TabsContent value="new" className="mt-0">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
           {sortedTasks
             .filter((task) => task.status === "new")
             .map((task, index) => (
@@ -189,7 +203,7 @@ export function StudentTasksList() {
       </TabsContent>
 
       <TabsContent value="in-progress" className="mt-0">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
           {sortedTasks
             .filter((task) => task.status === "in-progress" || task.status === "submitted")
             .map((task, index) => (
@@ -199,7 +213,7 @@ export function StudentTasksList() {
       </TabsContent>
 
       <TabsContent value="submitted" className="mt-0">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
           {sortedTasks
             .filter((task) => task.status === "submitted")
             .map((task, index) => (
@@ -209,7 +223,7 @@ export function StudentTasksList() {
       </TabsContent>
 
       <TabsContent value="completed" className="mt-0">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
           {sortedTasks
             .filter((task) => task.status === "completed")
             .map((task, index) => (
@@ -219,7 +233,7 @@ export function StudentTasksList() {
       </TabsContent>
 
       <TabsContent value="rejected" className="mt-0">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
           {sortedTasks
             .filter((task) => task.status === "rejected")
             .map((task, index) => (

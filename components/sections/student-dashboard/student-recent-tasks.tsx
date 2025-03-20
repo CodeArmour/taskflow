@@ -1,4 +1,5 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
+/* eslint-disable @typescript-eslint/no-explicit-any */
 "use client"
 
 import Link from "next/link"
@@ -104,7 +105,6 @@ export function StudentRecentTasks() {
               </div>
               <div className="flex items-center">
                 <StatusBadge
-                  // eslint-disable-next-line @typescript-eslint/no-explicit-any
                   status={task.status as any}
                   label={
                     task.status === "completed"

@@ -1,5 +1,4 @@
 "use client"
-
 import { useLanguage } from "@/components/providers/language-provider"
 import { Button } from "@/components/ui/button"
 import {
@@ -16,9 +15,9 @@ import { useMobile } from "@/hooks/use-mobile"
 import { Logo } from "@/components/atoms/logo"
 import { LanguageSwitcher } from "@/components/molecules/language-switcher"
 import { ThemeToggle } from "@/components/molecules/theme-toggle"
-import { StudentDashboardNav } from "@/components/molecules/student-dashboard-nav"
+import { DashboardNav } from "@/components/molecules/dashboard-nav"
 
-export function StudentDashboardHeader() {
+export function DashboardHeader() {
   const { t } = useLanguage()
   const isMobile = useMobile()
 
@@ -36,15 +35,15 @@ export function StudentDashboardHeader() {
             </SheetTrigger>
             <SheetContent side="left" className="w-64 p-0">
               <div className="p-4 border-b">
-                <Logo href="/student-dashboard" />
+                <Logo href="/dashboard" />
               </div>
-              <StudentDashboardNav mobile />
+              <DashboardNav mobile />
             </SheetContent>
           </Sheet>
         )}
 
         <div className="md:hidden">
-          <Logo href="/student-dashboard" />
+          <Logo href="/dashboard" />
         </div>
 
         {/* Right side actions */}
@@ -62,7 +61,7 @@ export function StudentDashboardHeader() {
                 </Button>
               </DropdownMenuTrigger>
               <DropdownMenuContent align="end" className="w-56">
-                <DropdownMenuLabel>John Doe</DropdownMenuLabel>
+                <DropdownMenuLabel>Admin User</DropdownMenuLabel>
                 <DropdownMenuSeparator />
                 <DropdownMenuItem>
                   <User className="h-4 w-4 mr-2" />
