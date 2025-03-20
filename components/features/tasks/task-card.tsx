@@ -75,7 +75,7 @@ export function TaskCard({ task, index }: { task: any; index: number }) {
                 </div>
               )}
             </div>
-            <Button variant="outline" size="sm">
+            <Button variant="outline" className="z-10" size="sm">
               {t("tasks.view_details")}
             </Button>
           </div>

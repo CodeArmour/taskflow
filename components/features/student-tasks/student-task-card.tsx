@@ -88,7 +88,7 @@ export function StudentTaskCard({ task, index }: { task: any; index: number }) {
             )}
           </CardContent>
           <CardFooter className="pt-2">
-            <Button variant="default" className="w-full" onClick={() => setIsDialogOpen(true)}>
+            <Button variant="default" className="w-full z-10" onClick={() => setIsDialogOpen(true)}>
               {task.status === "new" ? "View Details" : "Manage Task"}
             </Button>
           </CardFooter>
