@@ -4,6 +4,8 @@ import { Button } from "@/components/ui/button"
 import { Plus } from "lucide-react"
 import { useLanguage } from "@/components/providers/language-provider"
 import { CreateTaskDialog } from "@/components/features/tasks/create-task-dialog"
+import { ThemeToggle } from "@/components/molecules/theme-toggle"
+import { LanguageSwitcher } from "@/components/molecules/language-switcher"
 
 export function TasksHeader() {
   const { t, language } = useLanguage()
@@ -16,6 +18,8 @@ export function TasksHeader() {
         <p className="text-muted-foreground">{t("tasks.subtitle")}</p>
       </div>
       <div className="mt-4 md:mt-0">
+      <ThemeToggle />
+      <LanguageSwitcher />
         <CreateTaskDialog>
           <Button className="btn-primary">
             <Plus className={`${isRtl ? "ml-2" : "mr-2"} h-4 w-4`} />
