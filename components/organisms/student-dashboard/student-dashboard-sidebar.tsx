@@ -13,16 +13,14 @@ import {
 import { User, LogOut, Bell, Home, ClipboardList, UserCircle } from "lucide-react"
 import { Logo } from "@/components/atoms/logo"
 import { NavLink } from "@/components/molecules/nav-link"
-import { useRouter } from "next/navigation"
+import { logOut } from "@/actions/log-out"
 
 export function StudentDashboardSidebar() {
   const { t } = useLanguage()
-  const router = useRouter()
 
-  const handleLogout = () => {
-    // Add logout logic here
 
-    router.push("/login")
+  const handleLogout = async() => {
+    await logOut();
   }
 
   const navItems = [

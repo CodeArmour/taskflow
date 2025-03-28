@@ -3,6 +3,7 @@ import { Inter, Poppins, Tajawal } from "next/font/google"
 import "./globals.css"
 import { ThemeProvider } from "@/components/providers/theme-provider"
 import { LanguageProvider } from "@/components/providers/language-provider"
+import { useSession, SessionProvider } from 'next-auth/react';
 
 // Load fonts using next/font/google
 const poppins = Poppins({
@@ -38,9 +39,11 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning className={`${poppins.variable} ${tajawal.variable} ${inter.variable}`}>
       <body className="font-sans">
+      <SessionProvider>
         <ThemeProvider attribute="class" defaultTheme="system" enableSystem disableTransitionOnChange>
           <LanguageProvider>{children}</LanguageProvider>
         </ThemeProvider>
+      </SessionProvider>
       </body>
     </html>
   )

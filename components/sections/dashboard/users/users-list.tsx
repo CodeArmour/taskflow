@@ -1,34 +1,66 @@
 "use client"
 
-import { useState } from "react"
+import { useState, useEffect } from "react"
 import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import { Input } from "@/components/ui/input"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
 import { Search, User } from "lucide-react"
-import { mockUsers } from "@/lib/mock-data"
 import { useLanguage } from "@/components/providers/language-provider"
 import { UserCard } from "@/components/features/users/user-card"
+import { getUsers } from "@/actions/users-list"
 
 export function UsersList() {
   const { t, language } = useLanguage()
   const isRtl = language === "ar"
 
-  const [users] = useState(mockUsers)
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  const [users, setUsers] = useState<any[]>([])
+  const [isLoading, setIsLoading] = useState(true)
   const [searchQuery, setSearchQuery] = useState("")
   const [roleFilter, setRoleFilter] = useState("all")
   const [statusFilter, setStatusFilter] = useState("all")
 
+  // Fetch users on component mount
+  useEffect(() => {
+    const fetchUsers = async () => {
+      try {
+        setIsLoading(true)
+        const fetchedUsers = await getUsers()
+        setUsers(fetchedUsers)
+      } catch (error) {
+        console.error("Failed to fetch users:", error)
+        setUsers([])
+      } finally {
+        setIsLoading(false)
+      }
+    }
+
+    fetchUsers()
+  }, [])
+
   // Filter users based on search and role filter
   const filteredUsers = users.filter((user) => {
     const matchesSearch =
-      user.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
+      user.firstName.toLowerCase().includes(searchQuery.toLowerCase()) ||
+      user.lastName.toLowerCase().includes(searchQuery.toLowerCase()) ||
       user.email.toLowerCase().includes(searchQuery.toLowerCase())
-
+  
     const matchesRole = roleFilter === "all" || user.role === roleFilter
-    const matchesStatus = statusFilter === "all" || user.status === statusFilter
-
+    const matchesStatus = 
+      statusFilter === "all" || 
+      user.status.toLowerCase() === statusFilter.toLowerCase()
+  
     return matchesSearch && matchesRole && matchesStatus
   })
+
+  // Loading state
+  if (isLoading) {
+    return (
+      <div className="flex justify-center items-center h-full">
+        <p>Loading ... </p>
+      </div>
+    )
+  }
 
   return (
     <>
@@ -58,8 +90,8 @@ export function UsersList() {
             </SelectTrigger>
             <SelectContent>
               <SelectItem value="all">{t("users.all_roles")}</SelectItem>
-              <SelectItem value="admin">Admin</SelectItem>
-              <SelectItem value="student">Student</SelectItem>
+              <SelectItem value="ADMIN">Admin</SelectItem>
+              <SelectItem value="STUDENT">Student</SelectItem>
             </SelectContent>
           </Select>
         </div>
@@ -83,4 +115,3 @@ export function UsersList() {
     </>
   )
 }
-

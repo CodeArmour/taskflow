@@ -1,5 +1,3 @@
-"use client"
-
 import { UsersHeader } from "@/components/sections/dashboard/users/users-header"
 import { UsersList } from "@/components/sections/dashboard/users/users-list"
 

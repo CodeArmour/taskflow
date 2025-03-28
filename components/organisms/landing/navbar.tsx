@@ -129,7 +129,7 @@ export default function Navbar() {
           </Button>
 
           <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
-            <Link href="/login">
+            <Link href="/auth/login">
               <Button
                 variant="default"
                 size={isMobile ? "sm" : "default"}

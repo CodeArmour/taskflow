@@ -15,13 +15,21 @@ import {
   DialogTitle,
   DialogTrigger,
 } from "@/components/ui/dialog"
+import { createUser } from "@/actions/create-user"
 
 export function CreateUserDialog({ children }: { children: ReactNode }) {
   const { t } = useLanguage()
 
   const handleCreateUser = (formData: FormData) => {
     // User creation logic would go here
-    console.log("Creating user with data:", Object.fromEntries(formData.entries()))
+    try{
+      //createUser(Object.fromEntries(formData.entries()));
+
+      console.log("Creating user with data:", Object.fromEntries(formData.entries()))
+    }catch(error){
+      console.error("Error creating user:", error)
+    }
+    
   }
 
   return (

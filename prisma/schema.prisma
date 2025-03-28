@@ -1,0 +1,191 @@
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+// Enums for User Model
+enum Role {
+  ADMIN
+  STUDENT
+  MENTOR
+}
+
+enum Status {
+  ACTIVE
+  INACTIVE
+}
+
+enum Language {
+  ENGLISH
+  FRENCH
+  SPANISH
+  GERMAN
+  OTHER
+}
+
+enum Gender {
+  MALE
+  FEMALE
+}
+
+enum EducationLevel {
+  HIGH_SCHOOL
+  ASSOCIATE
+  BACHELOR
+  MASTER
+  DOCTORATE
+  OTHER
+}
+
+// Enums for Task Model
+enum TaskCategory {
+  ASSIGNMENT
+  PROJECT
+  QUIZ
+  HOMEWORK
+  RESEARCH
+  EXAM
+  PRESENTATION
+  OTHER
+}
+
+enum TaskState {
+  ACTIVE
+  NEEDS_REVIEW
+  COMPLETED
+  DRAFT
+  ARCHIVED
+}
+
+// Enums for UserTask Model
+enum UserTaskStatus {
+  NEW
+  SUBMITTED
+  IN_PROGRESS
+  UNDER_REVIEW
+  COMPLETED
+  REJECTED
+  RESUBMISSION_REQUIRED
+}
+
+// User Model
+model User {
+  id                  String            @id @default(cuid())
+  
+  // Personal Information
+  firstName           String
+  lastName            String
+  email               String            @unique
+  password            String
+  phone               String?
+  status              Status
+  
+  // Demographic Information
+  role                Role
+  dateOfBirth         DateTime?
+  gender              Gender?
+  
+  // Address Information
+  address             String?
+  city                String?
+  state               String?
+  zipPostalCode       String?
+  country             String?
+  
+  // Educational Information
+  highestEducationLevel EducationLevel?
+  university          String?
+  fieldOfStudy        String?
+  graduationYear      Int?
+  
+  // Additional Professional Information
+  skills              String[]
+  languages           String[]
+  certifications      String[]
+  interests           String[]
+  
+  // Metadata
+  createdAt           DateTime          @default(now())
+  updatedAt           DateTime          @updatedAt
+  createdBy           String?
+  
+  // Relations
+  tasks               UserTask[]
+  
+  // Indexes
+  @@index([email])
+  @@index([role])
+}
+
+// Task Model
+model Task {
+  id                  String            @id @default(cuid())
+  
+  // Task Details
+  title               String
+  description         String
+  category            TaskCategory
+  
+  // Task Constraints
+  dueDate             DateTime
+  requiresFileSubmission Boolean         @default(false)
+  maxSubmissions      Int?               @default(1)
+  
+  // Task Status
+  state               TaskState         @default(ACTIVE)
+  
+  // Metadata
+  createdAt           DateTime          @default(now())
+  updatedAt           DateTime          @updatedAt
+  createdBy           String?
+  
+  // Relations
+  userTasks           UserTask[]
+  
+  // Indexes
+  @@index([category])
+  @@index([state])
+  @@index([dueDate])
+}
+
+// UserTask Model (Assignment/Submission Model)
+model UserTask {
+  id                  String            @id @default(cuid())
+  
+  // Relationship Fields
+  userId              String
+  taskId              String
+  
+  // Submission Details
+  attachment          String?
+  submissionDate      DateTime?
+  
+  // Feedback and Evaluation
+  userFeedback        String?
+  adminFeedback       String?
+  
+  // Status Tracking
+  status              UserTaskStatus    @default(NEW)
+  grade               Float?
+  
+  // Attempt Tracking
+  submissionCount     Int               @default(0)
+  
+  // Metadata
+  createdAt           DateTime          @default(now())
+  updatedAt           DateTime          @updatedAt
+  
+  // Relations
+  user                User              @relation(fields: [userId], references: [id], onDelete: Cascade)
+  task                Task              @relation(fields: [taskId], references: [id], onDelete: Cascade)
+  
+  // Constraints and Indexes
+  @@unique([userId, taskId])
+  @@index([userId])
+  @@index([taskId])
+  @@index([status])
+}

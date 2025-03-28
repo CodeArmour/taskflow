@@ -268,8 +268,6 @@ export function StudentProfileForm() {
                     <SelectContent>
                       <SelectItem value="male">Male</SelectItem>
                       <SelectItem value="female">Female</SelectItem>
-                      <SelectItem value="other">Other</SelectItem>
-                      <SelectItem value="prefer-not-to-say">Prefer not to say</SelectItem>
                     </SelectContent>
                   </Select>
                 </div>
@@ -317,6 +315,8 @@ export function StudentProfileForm() {
                       <SelectItem value="China">China</SelectItem>
                       <SelectItem value="India">India</SelectItem>
                       <SelectItem value="Brazil">Brazil</SelectItem>
+                      <SelectItem value="Hungary">Hungary</SelectItem>
+                      <SelectItem value="Palestine">Palestine</SelectItem>
                     </SelectContent>
                   </Select>
                 </div>
