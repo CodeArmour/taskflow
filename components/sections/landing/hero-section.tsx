@@ -3,6 +3,7 @@
 import { useLanguage } from "@/components/providers/language-provider";
 import { Button } from "@/components/ui/button";
 import { motion } from "framer-motion";
+import Image from "next/image";
 
 export default function HeroSection() {
   const { t } = useLanguage();
@@ -72,10 +73,12 @@ export default function HeroSection() {
             transition={{ duration: 0.7, delay: 0.4 }}
           >
             <div className="aspect-video rounded-xl overflow-hidden shadow-strong border border-border/50 bg-card">
-              <img
+              <Image
                 src="/images/hero.jpg"
                 alt="TaskFlow Dashboard Preview"
-                className="w-full h-full object-cover"
+                layout="fill"
+                objectFit="cover"
+                className="rounded-xl"
               />
 
               {/* Overlay gradient */}

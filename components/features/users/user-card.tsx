@@ -30,6 +30,17 @@ import {
 import { useLanguage } from "@/components/providers/language-provider";
 import { StatusBadge } from "@/components/atoms/status-badge";
 import { ProgressBar } from "@/components/molecules/progress-bar";
+import { useState } from "react";
+import {
+  AlertDialog,
+  AlertDialogAction,
+  AlertDialogCancel,
+  AlertDialogContent,
+  AlertDialogDescription,
+  AlertDialogFooter,
+  AlertDialogHeader,
+  AlertDialogTitle,
+} from "@/components/ui/alert-dialog";
 
 type UserCardProps = {
   user: {
@@ -46,11 +57,32 @@ type UserCardProps = {
     profileCompletion: number;
   };
   index: number;
+  onDelete?: (userId: string) => void;
 };
 
-export function UserCard({ user, index }: UserCardProps) {
-  const { t, language } = useLanguage();
+export function UserCard({ user, index, onDelete }: UserCardProps) {
+  const { language } = useLanguage();
   const isRtl = language === "ar";
+  const [showDeleteDialog, setShowDeleteDialog] = useState(false);
+
+  // Set default values if they're not provided
+  const profileCompletion = user.profileCompletion || 20;
+  const tasksCompleted = user.tasksCompleted || 0;
+  const tasksAssigned = user.tasksAssigned || 0;
+
+  // In your UserCard.tsx file, update the handleDelete function:
+const handleDelete = async () => {
+  if (onDelete) {
+    try {
+      await onDelete(user.id);
+      // You might want to add a success notification here
+    } catch (error) {
+      console.error("Error deleting user:", error);
+      // You might want to add an error notification here
+    }
+  }
+  setShowDeleteDialog(false);
+};
 
   return (
     <motion.div
@@ -73,20 +105,23 @@ export function UserCard({ user, index }: UserCardProps) {
                 </Button>
               </DropdownMenuTrigger>
               <DropdownMenuContent align="end">
-                <DropdownMenuLabel>{t("user_actions.title")}</DropdownMenuLabel>
+                <DropdownMenuLabel>User Actions</DropdownMenuLabel>
                 <DropdownMenuSeparator />
                 <DropdownMenuItem>
                   <Edit className="h-4 w-4 mr-2" />
-                  <span>{t("user_actions.edit")}</span>
+                  <span>Edit User</span>
                 </DropdownMenuItem>
                 <DropdownMenuItem>
                   <Shield className="h-4 w-4 mr-2" />
-                  <span>{t("user_actions.change_role")}</span>
+                  <span>Change Role</span>
                 </DropdownMenuItem>
                 <DropdownMenuSeparator />
-                <DropdownMenuItem className="text-red-600">
+                <DropdownMenuItem
+                  className="text-red-600"
+                  onClick={() => setShowDeleteDialog(true)}
+                >
                   <Trash className="h-4 w-4 mr-2" />
-                  <span>{t("user_actions.delete")}</span>
+                  <span>Delete User</span>
                 </DropdownMenuItem>
               </DropdownMenuContent>
             </DropdownMenu>
@@ -120,8 +155,7 @@ export function UserCard({ user, index }: UserCardProps) {
             <div className="flex items-center">
               <Calendar className={`h-4 w-4 ${isRtl ? "ml-1" : "mr-1"}`} />
               <span>
-                {t("users.joined")}{" "}
-                {new Date(user.createdAt).toLocaleDateString()}
+                Joined {new Date(user.createdAt).toLocaleDateString()}
               </span>
             </div>
             <div className="flex items-center">
@@ -139,34 +173,48 @@ export function UserCard({ user, index }: UserCardProps) {
 
           <div className="grid grid-cols-2 gap-4 mb-4">
             <div className="bg-muted/50 p-3 rounded-md text-center">
-              <div className="text-2xl font-bold">
-                {(user.tasksCompleted = 0)}
-              </div>
+              <div className="text-2xl font-bold">{tasksCompleted}</div>
               <div className="text-xs text-muted-foreground">
-                {t("users.tasks_completed")}
+                Tasks Completed
               </div>
             </div>
             <div className="bg-muted/50 p-3 rounded-md text-center">
-              <div className="text-2xl font-bold">
-                {(user.tasksAssigned = 0)}
-              </div>
+              <div className="text-2xl font-bold">{tasksAssigned}</div>
               <div className="text-xs text-muted-foreground">
-                {t("users.tasks_assigned")}
+                Tasks Assigned
               </div>
             </div>
           </div>
 
-          <ProgressBar
-            value={(user.profileCompletion = 0)}
-            label={t("users.profile_completion")}
-          />
+          <ProgressBar value={profileCompletion} label="Profile Completion" />
         </CardContent>
         <CardFooter className="pt-2">
           <Button variant="outline" className="w-full z-10">
-            {t("users.view_profile")}
+            View Profile
           </Button>
         </CardFooter>
       </Card>
+
+      <AlertDialog open={showDeleteDialog} onOpenChange={setShowDeleteDialog}>
+        <AlertDialogContent>
+          <AlertDialogHeader>
+            <AlertDialogTitle>Delete User</AlertDialogTitle>
+            <AlertDialogDescription>
+              Are you sure you want to delete {user.firstName} {user.lastName}?
+              This action cannot be undone.
+            </AlertDialogDescription>
+          </AlertDialogHeader>
+          <AlertDialogFooter>
+            <AlertDialogCancel>Cancel</AlertDialogCancel>
+            <AlertDialogAction
+              onClick={handleDelete}
+              className="bg-red-600 hover:bg-red-700 text-white"
+            >
+              Delete
+            </AlertDialogAction>
+          </AlertDialogFooter>
+        </AlertDialogContent>
+      </AlertDialog>
     </motion.div>
   );
 }

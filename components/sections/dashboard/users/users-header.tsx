@@ -1,29 +1,27 @@
 "use client"
 
-import { Button } from "@/components/ui/button"
-import { Plus } from "lucide-react"
 import { useLanguage } from "@/components/providers/language-provider"
+import { Button } from "@/components/ui/button"
+import { PlusCircle } from "lucide-react"
 import { CreateUserDialog } from "@/components/features/users/create-user-dialog"
 
 export function UsersHeader() {
-  const { t, language } = useLanguage()
-  const isRtl = language === "ar"
+  const { t } = useLanguage()
 
   return (
-    <div className="flex flex-col md:flex-row justify-between items-start md:items-center">
+    <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
       <div>
         <h1 className="text-3xl font-bold tracking-tight">{t("users.title")}</h1>
-        <p className="text-muted-foreground">{t("users.subtitle")}</p>
+        <p className="text-muted-foreground">
+          {t("users.subtitle")}
+        </p>
       </div>
-      <div className="mt-4 md:mt-0">
-        <CreateUserDialog>
-          <Button className="btn-primary">
-            <Plus className={`${isRtl ? "ml-2" : "mr-2"} h-4 w-4`} />
-            {t("users.add_user")}
-          </Button>
-        </CreateUserDialog>
-      </div>
+      <CreateUserDialog>
+        <Button size="sm" className="h-9">
+          <PlusCircle className="mr-2 h-4 w-4" />
+          create user
+        </Button>
+      </CreateUserDialog>
     </div>
   )
 }
-

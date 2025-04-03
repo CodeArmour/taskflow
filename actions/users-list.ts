@@ -1,9 +1,13 @@
 "use server"
-import { db } from "@/lib/db";
 
-export const getUsers = async () => {
+import { db } from "@/lib/db"
+
+export async function getUsers() {
   try {
     const users = await db.user.findMany({
+      orderBy: {
+        createdAt: "desc"
+      },
       select: {
         id: true,
         firstName: true,
@@ -12,14 +16,12 @@ export const getUsers = async () => {
         role: true,
         status: true,
         createdAt: true,
-      },
-      orderBy: {
-        createdAt: 'desc'
       }
-    });
-    return users;
+    })
+
+    return users
   } catch (error) {
-    console.error("Error fetching users:", error);
-    return [];
+    console.error("Failed to fetch users:", error)
+    throw new Error("Failed to fetch users")
   }
 }
