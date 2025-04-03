@@ -16,7 +16,8 @@ import { useLanguage } from "@/components/providers/language-provider";
 import { StatusBadge } from "@/components/atoms/status-badge";
 import { ProgressBar } from "@/components/molecules/progress-bar";
 import { TaskCategory, TaskState } from "@prisma/client";
-import Link from "next/link";
+import { useState } from "react";
+import { TaskDetailDialog } from "@/components/features/tasks/task-details-dialog"
 
 interface TaskCardProps {
   task: {
@@ -87,6 +88,7 @@ function formatCategoryName(category: TaskCategory): string {
 }
 
 export function TaskCard({ task, index }: TaskCardProps) {
+  const [showDetails, setShowDetails] = useState(false)
   const { language } = useLanguage();
   const isRtl = language === "ar";
 
@@ -94,7 +96,7 @@ export function TaskCard({ task, index }: TaskCardProps) {
   const completionRate = task._count?.userTasks ? 100 : 0;
 
   return (
-    <motion.div
+    <>    <motion.div
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.3, delay: index * 0.05 }}
@@ -157,14 +159,14 @@ export function TaskCard({ task, index }: TaskCardProps) {
                 </div>
               )}
             </div>
-            <Link href={`/tasks/${task.id}`}>
-              <Button variant="outline" className="z-10" size="sm">
+              <Button variant="outline" className="z-10" size="sm" onClick={() => setShowDetails(true)}>
                 View Details
               </Button>
-            </Link>
           </div>
         </CardFooter>
       </Card>
     </motion.div>
+    <TaskDetailDialog task={task} open={showDetails} onOpenChange={setShowDetails} />
+    </>
   );
 }

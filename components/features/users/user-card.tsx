@@ -41,6 +41,7 @@ import {
   AlertDialogHeader,
   AlertDialogTitle,
 } from "@/components/ui/alert-dialog";
+import { UserProfileDialog } from "./user-profile-dialog";
 
 type UserCardProps = {
   user: {
@@ -64,6 +65,7 @@ export function UserCard({ user, index, onDelete }: UserCardProps) {
   const { language } = useLanguage();
   const isRtl = language === "ar";
   const [showDeleteDialog, setShowDeleteDialog] = useState(false);
+  const [showProfileDialog, setShowProfileDialog] = useState(false)
 
   // Set default values if they're not provided
   const profileCompletion = user.profileCompletion || 20;
@@ -189,11 +191,12 @@ const handleDelete = async () => {
           <ProgressBar value={profileCompletion} label="Profile Completion" />
         </CardContent>
         <CardFooter className="pt-2">
-          <Button variant="outline" className="w-full z-10">
+          <Button variant="outline" className="w-full z-10" onClick={() => setShowProfileDialog(true)}>
             View Profile
           </Button>
         </CardFooter>
       </Card>
+      <UserProfileDialog user={user} open={showProfileDialog} onOpenChange={setShowProfileDialog} />
 
       <AlertDialog open={showDeleteDialog} onOpenChange={setShowDeleteDialog}>
         <AlertDialogContent>
